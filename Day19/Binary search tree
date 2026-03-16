@@ -1,0 +1,214 @@
+import java.util.Queue;
+import java.util.LinkedList;
+class Bsnode{
+
+	int data;
+
+	 Bsnode left;
+
+	Bsnode right;
+	Bsnode(int val)
+	{
+		data=val;
+	}
+}
+
+
+public class BstTree{
+
+		void inorder(Bsnode root) {
+
+			if(root==null)return;
+
+			inorder(root.left);
+
+			System.out.println(root.data);
+
+			inorder(root.right);
+
+		}
+
+		void preorder(Bsnode root) {
+
+			if(root==null)return;
+
+			System.out.println(root.data);
+
+			preorder(root.left);
+
+			preorder(root.right);
+
+		}
+
+		void postorder(Bsnode root) {
+
+			if(root==null)return;
+
+			postorder(root.left);
+
+			postorder(root.right);
+
+			System.out.println(root.data);
+
+		}
+
+		void level(Bsnode root) {
+
+			if(root==null)return;
+
+			Queue<Bsnode> t = new LinkedList<>();
+
+			t.offer(root);
+
+			while(!t.isEmpty()) {
+
+				Bsnode temp = t.poll();
+
+
+
+
+				System.out.println(temp.data);
+
+				if(temp.left!=null)
+
+					t.offer(temp.left);
+
+				if(temp.right!=null)
+
+					t.offer(temp.right);
+
+			}
+
+		}
+
+		Bsnode BST (Bsnode root,int value) {
+
+			if(root==null) {
+
+				return new Bsnode(value);
+
+			}
+
+			if(value<root.data) {
+
+				root.left=BST(root.left,value);
+
+			}
+
+			else if(value>root.data) {
+
+				root.right=BST(root.right,value);
+
+			}
+
+			return root;
+
+		}
+
+		int depth(Bsnode root) {
+
+			if(root==null) {
+
+				return 0;
+
+			}
+
+			int left = depth(root.left);
+
+			int right = depth(root.right);
+
+			 return Math.max(left, right)+1;
+
+		}
+
+		int height(Bsnode root) {
+
+			if(root==null) {
+
+				return -1;
+
+			}
+
+			int left = height(root.left);
+
+			int right = height(root.right);
+
+			 return Math.max(left, right)+1;
+
+		}
+		boolean Search(Bsnode root,int target)
+		{
+			if(root==null)
+			{
+				return false;
+			}
+			if(root.data==target)
+			{
+				return true;
+			}
+			return (Search(root.left,target)|| Search(root.right,target));
+		}
+		Bsnode delete(Bsnode root,int target)
+		{
+			if(root.data==target)return null;
+			if(target<root.data)
+			{
+				root.left=delete(root.left,target);
+			}
+			else if(target>root.data)
+			{
+				root.right=delete(root.right,target);
+			}
+			else {
+				if(root.left==null)
+				{return root.right;
+					
+				}
+				if(root.right==null)
+				{
+					return root.left;
+				}
+				else {
+					root.data=minValue(root.right);
+					root.right=delete(root.right,root.data);
+				}
+			}
+			return root;
+		}
+		int minValue(Bsnode root)
+		{
+			while(root.left!=null)
+			{
+				root=root.left;
+			}
+			return root.data;
+		}
+
+
+
+
+	public static void main(String[] args) {
+
+		BstTree ob = new BstTree();
+
+		Bsnode root=null;
+
+		root=ob.BST(root, 10);
+
+		root=ob.BST(root, 5);
+
+		root=ob.BST(root, 20);
+
+		root=ob.BST(root, 4);
+
+		ob.inorder(root);
+
+//		ob.level(root);
+		ob.delete(root, 10);
+
+		System.out.println("Depth="+ob.depth(root));
+		System.out.println("Node found:"+ob.Search(root, 99));
+
+	}
+
+}
