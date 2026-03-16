@@ -1,0 +1,83 @@
+import java.util.Queue;
+import java.util.LinkedList;
+class Bnode
+{
+	int data;
+	Bnode left;
+	Bnode right;
+
+Bnode(int val)
+{
+ data=val;	
+}
+}
+public class Binarytree1 {
+	void inorder(Bnode root)
+	{
+		if(root==null)
+		{
+			return ;
+		}
+		inorder(root.left);
+		System.out.println(root.data);
+		inorder(root.right);
+	}
+	void preorder(Bnode root)
+	{
+		if(root==null)
+		{
+			return;
+		}
+		System.out.println(root.data);
+		preorder(root.left);
+		preorder(root.right);
+	}
+	void postorder(Bnode root)
+	{
+		if(root==null)
+		{
+			return;
+		}
+		postorder(root.left);
+		postorder(root.right);
+		System.out.println(root.data);
+	}
+	void levelorder(Bnode root)
+	{
+		if(root==null)
+		{
+			return;
+		}
+		Queue<Bnode>t=new LinkedList<>();
+		t.offer(root);
+		while(!t.isEmpty())
+		{
+			Bnode temp=t.poll();
+			System.out.println(temp.data);
+			if(temp.left!=null)
+			{
+				t.offer(temp.left);
+			}
+			if(temp.right!=null)
+			{
+				t.offer(temp.right);
+			}
+		}
+		
+	}
+	public static void main(String[] args) {
+		Binarytree1 ob=new Binarytree1();
+		Bnode root=new Bnode(10);
+		root.left=new Bnode(20);
+		root.right=new Bnode(30);
+		root.left.left=new Bnode(40);
+		root.left.right=new Bnode(50);
+		// TODO Auto-generated method stub
+//		ob.inorder(root);
+//		ob.preorder(root);
+//		ob.postorder(root);
+		ob.levelorder(root);
+
+	}
+
+}
