@@ -1,0 +1,82 @@
+class Queue1
+{
+	int data;
+	Queue1 next;
+}
+public class QueueOriginal {
+	Queue1 head;
+	void enqueue(int val)
+	{
+		Queue1 newNode=new Queue1();
+		newNode.data=val;
+		if(head==null)
+		{
+			head=newNode;
+		}
+		else
+		{
+		   Queue1 temp=head;
+			while(temp.next!=null)
+			{
+				temp=temp.next;
+			}
+			temp.next=newNode;
+		}
+	}
+	void dequeue()
+
+	{
+		if(!isEmpty())
+		{
+			head=head.next;
+		}
+		else {
+			System.out.println("Queue is empty");
+		}
+	}
+	int peek()
+	{
+		if(!isEmpty())
+		{
+			return head.data;
+		}
+		return -1;
+	}
+	boolean isEmpty()
+	{
+		
+		if(head==null)
+		{
+			return true;
+		}
+		return false;
+	}
+	boolean contains(int val)
+	{
+		Queue1 temp=head;
+		while(temp!=null)
+		{
+			if(temp.data==val)
+			{
+				return true;
+			}
+			temp=temp.next;
+		}
+		return false;
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		QueueOriginal ob=new QueueOriginal();
+		ob.enqueue(10);
+		ob.enqueue(20);
+		ob.enqueue(30);
+		ob.enqueue(40);
+		ob.dequeue();
+		ob.dequeue();
+		System.out.println(ob.peek());
+		System.out.println(ob.isEmpty());
+		System.out.println(ob.contains(40));
+
+	}
+
+}
