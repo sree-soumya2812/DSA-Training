@@ -1,0 +1,25 @@
+class Person{
+	private int age;
+	public void setAge(int a)
+	{
+		if(a>=0) 
+			age=a;
+	}
+		public int getAge()
+		{
+			return age;
+		}
+	}
+
+public class AcessSpecifier {
+
+	public static void main(String[] args) {
+		Person ob=new Person();
+		ob.setAge(25);
+		ob.setAge(-5);
+		ob.setAge(20);
+		System.out.println(ob.getAge());
+	}
+		// TODO Auto-generated method stub
+
+	}
