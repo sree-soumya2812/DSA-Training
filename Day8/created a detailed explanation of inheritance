@@ -1,0 +1,28 @@
+class Parent
+{
+	void who()
+	{
+		System.out.println("Parent");
+	}
+}
+class Child extends Parent{
+	void who()
+	{
+		System.out.println("Child");
+	}
+	void test()
+	{
+		this.who();
+		super.who();
+	}
+}
+public class Superclass1 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Child ob=new Child();
+		ob.test();
+
+	}
+
+}
