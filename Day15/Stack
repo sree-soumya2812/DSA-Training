@@ -1,0 +1,68 @@
+class Tstack
+{
+	int data;
+	Tstack Link;
+}
+public class StackOriginal {
+	Tstack head;
+	void push(int val)
+	{
+		Tstack newNode=new Tstack();
+		newNode.data=val;
+		if(head==null)
+		{
+			head=newNode;
+		}
+		else {
+			newNode.Link=head;
+			head=newNode;
+		}
+	}
+	void pop()
+	{
+		if(!isEmpty())
+		{
+			head=head.Link;
+		}
+		else {
+			System.out.println("Stack is empty");
+		}
+	}
+	int peek()
+	{
+		if(!isEmpty())
+		{
+			return head.data;
+		}
+		return -1;
+	}
+	boolean isEmpty()
+	{
+		
+		if(head==null)
+		{
+			return true;
+		}
+		return false;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		StackOriginal ob=new StackOriginal();
+		ob.push(10);
+
+		ob.push(20);
+
+		ob.push(30);
+
+		ob.push(40);
+
+		ob.pop();
+
+		System.out.println(ob.peek());
+
+		System.out.println(ob.isEmpty());
+
+	}
+
+}
